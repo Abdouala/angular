@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   isAuth = false;
-  lastUpdate = new Date();
+  //lastUpdate = new Date();
+  lastUpdate = new Observable<string>(observer => {
+    setTimeout(() => observer.next(new Date().toString()), 2000);
+  })
 
   appareils = [
     {
