@@ -17,14 +17,11 @@ export class AuthComponent implements OnInit {
   }
 
   onSignIn(){
-    this.authService.signIn()
-    .toPromise()
-    .then(
-      () => {
-        console.log('Connexion');
-        this.authStatus = this.authService.isAuth
-      }
-    )
+    this.authService.signIn().subscribe(res => {
+      this.authStatus = res;
+      console.log('Connexion réussie !!!');
+      console.log("authService.isAuth(): " + this.authStatus);
+    });
   }
 
   onSignOut(){
