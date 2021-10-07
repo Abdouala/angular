@@ -11,6 +11,7 @@ export class AppareilComponent implements OnInit {
   @Input() appareilName = '';
   @Input() appareilStatus = '';
   @Input() indexOfAppareil!: number;
+  @Input() id!: number;
 
   color = '';
   //appareilName = 'Machine à laver';

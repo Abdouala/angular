@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AppareilService } from '../services/appareil.service';
 
 @Component({
@@ -16,6 +16,7 @@ export class AppareilViewComponent implements OnInit {
   })
 
   appareils?: any[];
+  appareilSubscription!: Subscription;
 
   /* appareilOne = 'Machine à laver';
   appareilTwo = 'Télévision';
@@ -30,7 +31,12 @@ export class AppareilViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.appareils = this.appareilService.appareils;
+    this.appareilSubscription = this.appareilService.appareilSubject.subscribe(
+      appareil => {
+        this.appareils = appareil;
+      }
+    );
+    this.appareilService.emitAppareilSubject();
   }
 
   onAllumer(){
